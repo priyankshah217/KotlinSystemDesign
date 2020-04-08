@@ -1,3 +1,5 @@
+package com.coding.challenge.enums
+
 enum class Frequency(val value: Int) {
     DAILY(1),
     WEEKLY(7),
