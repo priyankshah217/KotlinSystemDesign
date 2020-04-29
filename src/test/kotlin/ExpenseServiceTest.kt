@@ -8,6 +8,14 @@ import org.junit.jupiter.api.assertThrows
 class ExpenseServiceTest {
 
     @Test
+    fun `calculate monthly subscription for non periodic category`() {
+        val expenseService = ExpenseService()
+        assertThat(expenseService.calculateWeeklyExpense(listOf(CarWash()))).isEqualTo(200.0)
+        assertThat(expenseService.calculateMonthlyExpense(listOf(CarWash()))).isEqualTo(200.0)
+        assertThat(expenseService.calculateAnnualExpense(listOf(CarWash()))).isEqualTo(200.0)
+    }
+
+    @Test
     fun `calculate monthly subscription for all news papers`() {
         val expenseService = ExpenseService()
         val actualMonthlyExpense = expenseService.calculateMonthlyExpense(
@@ -60,6 +68,14 @@ class ExpenseServiceTest {
         val expenseService = ExpenseService()
         val actualWeeklyExpense = expenseService.calculateWeeklyExpense(listOf(TOI()))
         assertThat(actualWeeklyExpense).isEqualTo(26.0)
+    }
+
+    @Test
+    fun `exception when list is empty`() {
+        val expenseService = ExpenseService()
+        assertThrows<EmptyListException> { expenseService.calculateWeeklyExpense(emptyList()) }
+        assertThrows<EmptyListException> { expenseService.calculateMonthlyExpense(emptyList()) }
+        assertThrows<EmptyListException> { expenseService.calculateAnnualExpense(emptyList()) }
     }
 
     @Test
