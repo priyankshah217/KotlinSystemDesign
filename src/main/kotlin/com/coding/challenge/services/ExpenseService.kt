@@ -1,7 +1,8 @@
 package com.coding.challenge.services
 
 import com.coding.challenge.exceptions.EmptyListException
-import com.coding.challenge.model.*
+import com.coding.challenge.model.Category
+import com.coding.challenge.model.PeriodicCategory
 
 class ExpenseService {
 
@@ -52,30 +53,4 @@ class ExpenseService {
             subscription.weeklySubscriptionCost(it)
         }.sum()
     }
-}
-
-fun main() {
-    val expenseService = ExpenseService()
-    println(
-        expenseService.calculateWeeklyExpense(
-            listOf(
-                TOI(),
-                ET(),
-                BM(),
-                Hindu(),
-                HT()
-            )
-        )
-    )
-    println(
-        expenseService.calculateMonthlyExpense(
-            listOf(
-                TOI(),
-                ET(),
-                BM(),
-                Hindu(),
-                HT()
-            )
-        )
-    )
 }
